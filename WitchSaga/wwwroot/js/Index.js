@@ -8,21 +8,22 @@
 			var currentIndex = $(".villagerGroup").length;
 
 			var villagerGroup = `
-			<div class="villagerGroup mb-3">
-				<div>
-					<h5>Name</h5>
-					<input type="text" name="Villagers[${currentIndex}].Name" value="" />
+				<div class="villagerGroup mb-3">
+					<div>
+						<h5>Name</h5>
+						<input type="text" name="Villagers[${currentIndex}].Name" value="" />
+					</div>
+					<div>
+						<h5>Age of Death</h5>
+						<input type="number" name="Villagers[${currentIndex}].AgeOfDeath" value="0"/>
+					</div>
+					<div>
+						<h5>Year of Death</h5>
+						<input type="number" name="Villagers[${currentIndex}].YearOfDeath" value="0"/>
+					</div>
 				</div>
-				<div>
-					<h5>Age of Death</h5>
-					<input type="number" name="Villagers[${currentIndex}].AgeOfDeath" value="0"/>
-				</div>
-				<div>
-					<h5>Year of Death</h5>
-					<input type="number" name="Villagers[${currentIndex}].YearOfDeath" value="0"/>
-				</div>
-			</div>
-		`;
+			`;
+
 			$("#villagerContainer").append(villagerGroup);
 		});
 
