@@ -20,3 +20,31 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#villagerContainer {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.villagerGroup {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.villagerGroup > div {
+    flex: 1;
+    min-width: 200px;
+}
+
+.villagerGroup h5 {
+    margin: 0 0 5px 0;
+}
+
+.villagerGroup input[type="text"],
+.villagerGroup input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
