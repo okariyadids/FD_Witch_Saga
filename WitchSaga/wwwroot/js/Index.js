@@ -35,7 +35,6 @@
 				url: self.FormDiv.data("calculate-url"),
 				data: formData,
 				success: function (result) {
-					debugger
 					if (result.isSuccess) {
 						$("#result").html(result.value);
 					}
