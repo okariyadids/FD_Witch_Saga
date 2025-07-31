@@ -1,8 +1,45 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model VillagerModel;
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h2>Kill Calculator</h2>
+
+<form method="post" 
+	id="villagerForm"
+	data-calculate-url="@Url.Action("CalculateKill", "Home")"
+	class="mb-5"
+>
+	<div id="villagerContainer">
+		<div class="villagerGroup mb-3">
+			<div>
+				<h5>Name</h5>
+				<input type="text" name="Villagers[0].Name" value="@Model.Name" />
+			</div>
+			<div>
+				<h5>Age of Death</h5>
+				<input type="number" name="Villagers[0].AgeOfDeath" value="@Model.AgeOfDeath" />
+			</div>
+			<div>
+				<h5>Year of Death</h5>
+				<input type="number" name="Villagers[0].YearOfDeath" value="@Model.YearOfDeath" />
+			</div>
+		</div>
+	</div>
+	<div class="mt-3">
+		<button type="button" id="addVillager">Add More Villager</button>
+		<button type="button" id="calculate">Calculate</button>
+	</div>
+</form>
+
+<div>
+	<h3>Result</h3>
+	<div id="result">No Information!</div>
 </div>
+
+@section Scripts {
+	<script src="~/js/Index.js" asp-append-version="true"></script>
+	<script>
+		$(function () {
+			var page = new Index();
+			page.Register();
+		});
+	</script>
+}
