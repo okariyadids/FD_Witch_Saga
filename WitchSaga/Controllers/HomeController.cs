@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WitchSaga.Models;
 using WitchSaga.ServicesContract;
@@ -10,7 +9,6 @@ namespace WitchSaga.Controllers
     {
         #region Fields
 
-        private readonly ILogger<HomeController> _logger;
         private readonly IFibonacciCalculatorService _fibonacciCalculatorService;
 
         #endregion
@@ -18,11 +16,9 @@ namespace WitchSaga.Controllers
         #region Constructor
 
         public HomeController(
-            IFibonacciCalculatorService fibonacciCalculatorService,
-            ILogger<HomeController> logger)
+            IFibonacciCalculatorService fibonacciCalculatorService)
         {
             _fibonacciCalculatorService = fibonacciCalculatorService;
-            _logger = logger;
         }
 
         #endregion
