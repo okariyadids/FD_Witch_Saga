@@ -1,7 +1,11 @@
+using WitchSaga.Services;
+using WitchSaga.ServicesContract;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IFibonacciCalculatorService, FibonacciCalculatorService>();
 
 var app = builder.Build();
 
