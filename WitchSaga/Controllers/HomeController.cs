@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WitchSaga.Models;
+using WitchSaga.ServicesContract;
 
 namespace WitchSaga.Controllers
 {
@@ -10,13 +11,17 @@ namespace WitchSaga.Controllers
         #region Fields
 
         private readonly ILogger<HomeController> _logger;
+        private readonly IFibonacciCalculatorService _fibonacciCalculatorService;
 
         #endregion
 
         #region Constructor
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            IFibonacciCalculatorService fibonacciCalculatorService,
+            ILogger<HomeController> logger)
         {
+            _fibonacciCalculatorService = fibonacciCalculatorService;
             _logger = logger;
         }
 
@@ -73,7 +78,7 @@ namespace WitchSaga.Controllers
             }
 
             var averageResult = villagers.Count > 1 
-                ? string.Format("So the average is {4}", countTotalKill/villagers.Count) 
+                ? string.Format("So the average is {0}", (double)countTotalKill/villagers.Count) 
                 : string.Empty;
 
             return this.Json(new
@@ -87,31 +92,6 @@ namespace WitchSaga.Controllers
 
         #region Private Methods
 
-        private int GetTotalFibonacciKill(int year)
-        {
-            if (year == 1)
-            {
-                return 1;
-            }
-
-            // For year >= 2
-            // Fibonacci is a sequence in which each element is the sum of the two elements that precede it.
-            // We need to assign the first 2 number
-            var fibonacciSquence = new List<int>();
-            fibonacciSquence.Add(0);
-            fibonacciSquence.Add(1);
-
-            var totalKill = 1;
-
-            for (int i = 2; i <= year; i++) { 
-                var nextSequence = fibonacciSquence[i - 1] + fibonacciSquence[i - 2];
-                fibonacciSquence.Add(nextSequence);
-                totalKill += nextSequence;
-            }
-
-            return totalKill;
-        }
-
         private int TotalKilledPersonInYear(int selectedYear)
         {
             if (selectedYear <= 0)
@@ -119,7 +99,7 @@ namespace WitchSaga.Controllers
                 return -1;
             }
 
-            return this.GetTotalFibonacciKill(selectedYear);
+            return this._fibonacciCalculatorService.GetTotalFibonacciKill(selectedYear);
         }
 
         #endregion
